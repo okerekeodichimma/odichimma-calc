@@ -9,7 +9,7 @@
     "start": "npx serve . -l 3000"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "jest": "^29.0.0"
+    "eslint": "latest",
+    "jest": "latest"
   }
 }
