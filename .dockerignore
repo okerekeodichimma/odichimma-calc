@@ -1,0 +1,8 @@
+node_modules
+coverage
+.git
+.gitignore
+.eslintrc.json
+jest.config.js
+tests
+*.md

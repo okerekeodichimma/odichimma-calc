@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odichimma's Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="calculator-container">
+
+    <!-- Header -->
+    <div class="calc-header">
+      <h2>OKEREKE ODICHIMMA JOY</h2>
+      <p>SEN 482 &mdash; Software Engineering Calculator</p>
+    </div>
+
+    <!-- Standard Calculator -->
+    <div class="calculator-card">
+      <div class="display-box">
+        <input type="text" id="result" disabled placeholder="0" />
+      </div>
+
+      <div class="btn-grid">
+        <!-- Row 1 -->
+        <button class="btn btn-clear"    onclick="clearResult()">AC</button>
+        <button class="btn btn-util"     onclick="backspace()">&#8592;</button>
+        <button class="btn btn-operator" onclick="appendToResult('/')">&#247;</button>
+        <button class="btn btn-operator" onclick="appendToResult('*')">&#215;</button>
+
+        <!-- Row 2 -->
+        <button class="btn btn-number" onclick="appendToResult('7')">7</button>
+        <button class="btn btn-number" onclick="appendToResult('8')">8</button>
+        <button class="btn btn-number" onclick="appendToResult('9')">9</button>
+        <button class="btn btn-operator" onclick="appendToResult('-')">&minus;</button>
+
+        <!-- Row 3 -->
+        <button class="btn btn-number" onclick="appendToResult('4')">4</button>
+        <button class="btn btn-number" onclick="appendToResult('5')">5</button>
+        <button class="btn btn-number" onclick="appendToResult('6')">6</button>
+        <button class="btn btn-operator" onclick="appendToResult('+')">+</button>
+
+        <!-- Row 4 -->
+        <button class="btn btn-number" onclick="appendToResult('1')">1</button>
+        <button class="btn btn-number" onclick="appendToResult('2')">2</button>
+        <button class="btn btn-number" onclick="appendToResult('3')">3</button>
+        <button class="btn btn-equals btn-tall" onclick="calculateResult()">=</button>
+
+        <!-- Row 5 -->
+        <button class="btn btn-number span2" onclick="appendToResult('0')">0</button>
+        <button class="btn btn-number" onclick="appendToResult('.')">.</button>
+      </div>
+    </div>
+
+    <!-- Simultaneous Equation Solver -->
+    <div class="solver-card">
+      <h3 class="solver-title">&#9881;&#65039; Simultaneous Equation Solver</h3>
+      <p class="solver-desc">Solves: <em>ax + by = c</em> &nbsp;|&nbsp; <em>dx + ey = f</em></p>
+
+      <div class="eq-row">
+        <label>Equation 1:</label>
+        <input type="number" id="a" placeholder="a" />
+        <span>x +</span>
+        <input type="number" id="b" placeholder="b" />
+        <span>y =</span>
+        <input type="number" id="c" placeholder="c" />
+      </div>
+
+      <div class="eq-row">
+        <label>Equation 2:</label>
+        <input type="number" id="d" placeholder="d" />
+        <span>x +</span>
+        <input type="number" id="e" placeholder="e" />
+        <span>y =</span>
+        <input type="number" id="f" placeholder="f" />
+      </div>
+
+      <button class="btn btn-solve" onclick="solveAndDisplay()">Solve</button>
+      <div id="solver-result" class="solver-result"></div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

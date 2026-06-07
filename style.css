@@ -1,0 +1,194 @@
+/* ================================================
+   OKEREKE ODICHIMMA JOY — SEN 482 Calculator
+   ================================================ */
+
+:root {
+  --primary:   #667eea;
+  --secondary: #764ba2;
+  --danger:    #e74c3c;
+  --success:   #2ecc71;
+  --warning:   #f39c12;
+  --dark:      #2c3e50;
+  --shadow:    0 10px 30px rgba(0,0,0,0.2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 30px 15px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---- Container ---- */
+.calculator-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ---- Header ---- */
+.calc-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+.calc-header h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.calc-header p {
+  font-size: 0.8rem;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* ---- Calculator Card ---- */
+.calculator-card {
+  background: rgba(255,255,255,0.96);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+/* ---- Display ---- */
+.display-box {
+  margin-bottom: 18px;
+}
+#result {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: right;
+  padding: 16px 20px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+#result:disabled { opacity: 1; }
+
+/* ---- Button Grid ---- */
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  height: 62px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
+.btn:active { transform: translateY(0);    box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+
+.btn-number   { background: linear-gradient(135deg,#f8f9fa,#e9ecef); color: var(--dark); }
+.btn-operator { background: linear-gradient(135deg,var(--primary),var(--secondary)); color: white; }
+.btn-clear    { background: linear-gradient(135deg,var(--danger),#c0392b); color: white; }
+.btn-util     { background: linear-gradient(135deg,var(--warning),#e67e22); color: white; }
+.btn-equals   { background: linear-gradient(135deg,var(--success),#27ae60); color: white; }
+
+/* tall equals spans 2 rows */
+.btn-tall { grid-row: span 2; height: 100%; }
+/* zero button spans 2 columns */
+.span2    { grid-column: span 2; }
+
+/* ---- Solver Card ---- */
+.solver-card {
+  background: rgba(255,255,255,0.96);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.solver-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.solver-desc {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.eq-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.eq-row label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dark);
+  min-width: 80px;
+}
+.eq-row input[type="number"] {
+  width: 58px;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.eq-row input[type="number"]:focus { border-color: var(--primary); }
+.eq-row span { font-size: 0.95rem; color: var(--dark); }
+
+.btn-solve {
+  width: 100%;
+  height: 48px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.btn-solve:hover  { transform: translateY(-2px); }
+.btn-solve:active { transform: translateY(0); }
+
+.solver-result {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-height: 44px;
+  display: none;
+}
+.solver-result.success {
+  display: block;
+  background: linear-gradient(135deg,#d4edda,#c3e6cb);
+  color: #155724;
+}
+.solver-result.error {
+  display: block;
+  background: linear-gradient(135deg,#f8d7da,#f5c6cb);
+  color: #721c24;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 420px) {
+  .btn { height: 54px; font-size: 1rem; }
+  #result { font-size: 1.6rem; }
+}
