@@ -1,8 +1,3 @@
-// ================================================
-//  OKEREKE ODICHIMMA JOY — SEN 482 Calculator
-//  Unique feature: Simultaneous Equation Solver
-//  (Cramer's Rule)
-// ================================================
 
 "use strict";
 
@@ -42,9 +37,7 @@ function updateDisplay() {
 
 /**
  * Evaluates a simple arithmetic expression string.
- * Supports: numbers, +, -, *, /, decimal points.
  * Returns a number, or "Error" on invalid input.
- *
  * @param {string} expression
  * @returns {number|string}
  */
@@ -52,12 +45,9 @@ function calculateExpression(expression) {
   if (typeof expression !== "string" || expression.trim() === "") {
     return "Error";
   }
-
-  // Only allow safe characters: digits, operators, dot, whitespace
   if (!/^[\d\s+\-*/.]+$/.test(expression)) {
     return "Error";
   }
-
   try {
     // eslint-disable-next-line no-new-func
     const result = Function('"use strict"; return (' + expression + ")")();
@@ -82,52 +72,52 @@ function calculateResult() {
 // --------------------------------------------------
 
 /**
- * Solves a 2×2 system of linear equations using Cramer's Rule:
+ * Solves a 2x2 system using Cramer's Rule:
  *   a*x + b*y = c
  *   d*x + e*y = f
  *
- * @param {number} a
- * @param {number} b
- * @param {number} c
- * @param {number} d
- * @param {number} e
- * @param {number} f
+ * @param {number} a @param {number} b @param {number} c
+ * @param {number} d @param {number} e @param {number} f
  * @returns {{ x: number, y: number }|{ error: string }}
  */
 function solveSimultaneous(a, b, c, d, e, f) {
-  // Validate all inputs are finite numbers
   const inputs = [a, b, c, d, e, f];
   for (const n of inputs) {
     if (typeof n !== "number" || !isFinite(n)) {
       return { error: "All coefficients must be finite numbers." };
     }
   }
-
-  const det = a * e - b * d;          // determinant of coefficient matrix
-
+  const det = a * e - b * d;
   if (det === 0) {
     return { error: "No unique solution — equations are parallel or identical." };
   }
-
   const x = (c * e - b * f) / det;
   const y = (a * f - c * d) / det;
-
   return { x, y };
 }
 
 // --------------------------------------------------
-// SIMULTANEOUS EQUATION SOLVER — UI glue
+// SOLVER — toggle dropdown
+// --------------------------------------------------
+function toggleSolver() {
+  const panel = document.getElementById("solver-panel");
+  const arrow = document.getElementById("solver-arrow");
+  if (panel && arrow) {
+    panel.classList.toggle("open");
+    arrow.classList.toggle("open");
+  }
+}
+
+// --------------------------------------------------
+// SOLVER — UI glue (shows result on main display)
 // --------------------------------------------------
 function solveAndDisplay() {
   const ids = ["a", "b", "c", "d", "e", "f"];
   const vals = ids.map((id) => parseFloat(document.getElementById(id).value));
 
-  const resultBox = document.getElementById("solver-result");
-
-  // Check for empty / non-numeric fields
   if (vals.some(isNaN)) {
-    resultBox.className = "solver-result error";
-    resultBox.textContent = "Please fill in all six coefficient fields.";
+    currentExpression = "Fill all fields";
+    updateDisplay();
     return;
   }
 
@@ -135,13 +125,14 @@ function solveAndDisplay() {
   const solution = solveSimultaneous(a, b, c, d, e, f);
 
   if (solution.error) {
-    resultBox.className = "solver-result error";
-    resultBox.textContent = solution.error;
+    currentExpression = "No solution";
+    updateDisplay();
   } else {
-    const xRounded = Math.round(solution.x * 1e10) / 1e10;
-    const yRounded = Math.round(solution.y * 1e10) / 1e10;
-    resultBox.className = "solver-result success";
-    resultBox.textContent = `x = ${xRounded},  y = ${yRounded}`;
+    const xR = Math.round(solution.x * 1e10) / 1e10;
+    const yR = Math.round(solution.y * 1e10) / 1e10;
+    // Show result on main calculator display
+    currentExpression = "x=" + xR + " y=" + yR;
+    updateDisplay();
   }
 }
 

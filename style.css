@@ -1,6 +1,3 @@
-/* ================================================
-   OKEREKE ODICHIMMA JOY — SEN 482 Calculator
-   ================================================ */
 
 :root {
   --primary:   #667eea;
@@ -15,12 +12,13 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: beige;
   min-height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 30px 15px;
   display: flex;
   justify-content: center;
+ 
 }
 
 /* ---- Container ---- */
@@ -33,7 +31,7 @@ body {
 .calc-header {
   text-align: center;
   margin-bottom: 20px;
-  color: white;
+  color: black;
 }
 .calc-header h2 {
   font-size: 1.3rem;
@@ -62,10 +60,10 @@ body {
 }
 #result {
   width: 100%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: white;
   border: none;
   border-radius: 12px;
-  color: white;
+  color: black;
   font-size: 2rem;
   font-weight: 500;
   text-align: right;
@@ -94,11 +92,11 @@ body {
 .btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
 .btn:active { transform: translateY(0);    box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 
-.btn-number   { background: linear-gradient(135deg,#f8f9fa,#e9ecef); color: var(--dark); }
-.btn-operator { background: linear-gradient(135deg,var(--primary),var(--secondary)); color: white; }
-.btn-clear    { background: linear-gradient(135deg,var(--danger),#c0392b); color: white; }
-.btn-util     { background: linear-gradient(135deg,var(--warning),#e67e22); color: white; }
-.btn-equals   { background: linear-gradient(135deg,var(--success),#27ae60); color: white; }
+.btn-number   { background:white; color: var(--dark); }
+.btn-operator { background:black; color: white; }
+.btn-clear    { background: black; color: white; }
+.btn-util     { background: black; color: white; }
+.btn-equals   { background: black; color: white; }
 
 /* tall equals spans 2 rows */
 .btn-tall { grid-row: span 2; height: 100%; }
@@ -155,7 +153,7 @@ body {
   width: 100%;
   height: 48px;
   margin-top: 8px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: burlywood;
   color: white;
   border: none;
   border-radius: 12px;
@@ -192,3 +190,78 @@ body {
   .btn { height: 54px; font-size: 1rem; }
   #result { font-size: 1.6rem; }
 }
+
+/* ================================================
+   SIMULTANEOUS EQUATION SOLVER — DROPDOWN
+   ================================================ */
+
+.solver-toggle-wrap {
+  margin-top: 18px;
+  border-top: 2px solid #f0f0f0;
+  padding-top: 14px;
+}
+
+.btn-solver-toggle {
+  width: 100%;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 12px rgba(102,126,234,0.35);
+  display: flex;
+  align-items: center;
+}
+.btn-solver-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(102,126,234,0.45);
+}
+
+#solver-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-right: 4px;
+}
+#solver-arrow.open {
+  transform: rotate(180deg);
+}
+
+/* Panel — hidden by default, animates open */
+.solver-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 4px;
+}
+.solver-panel.open {
+  max-height: 400px;
+  padding: 14px 4px 4px;
+}
+
+.solver-desc {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.btn-solve {
+  width: 100%;
+  height: 44px;
+  margin-top: 10px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(46,204,113,0.3);
+}
+.btn-solve:hover  { transform: translateY(-2px); }
+.btn-solve:active { transform: translateY(0); }
