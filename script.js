@@ -142,3 +142,15 @@ function solveAndDisplay() {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { calculateExpression, solveSimultaneous };
 }
+function toggleSolver() {
+  const panel = document.getElementById("solver-panel");
+  const arrow = document.getElementById("solver-arrow");
+
+  panel.classList.toggle("open");
+
+  if (panel.classList.contains("open")) {
+    arrow.textContent = "▲";
+  } else {
+    arrow.textContent = "▼";
+  }
+}

@@ -1,267 +1,218 @@
-
-:root {
-  --primary:   #667eea;
-  --secondary: #764ba2;
-  --danger:    #e74c3c;
-  --success:   #2ecc71;
-  --warning:   #f39c12;
-  --dark:      #2c3e50;
-  --shadow:    0 10px 30px rgba(0,0,0,0.2);
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: beige;
-  min-height: 100vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 30px 15px;
-  display: flex;
-  justify-content: center;
- 
+body{
+  font-family:Arial, Helvetica, sans-serif;
+  background:#d6d6d6;
+  min-height:100vh;
 }
 
-/* ---- Container ---- */
-.calculator-container {
-  width: 100%;
-  max-width: 400px;
+/* HOME PAGE */
+
+.home-page{
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-/* ---- Header ---- */
-.calc-header {
-  text-align: center;
-  margin-bottom: 20px;
-  color: black;
-}
-.calc-header h2 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-.calc-header p {
-  font-size: 0.8rem;
-  opacity: 0.85;
-  margin-top: 4px;
+.home-card{
+  background:white;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  width:90%;
+  max-width:500px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-/* ---- Calculator Card ---- */
-.calculator-card {
-  background: rgba(255,255,255,0.96);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 24px;
-  margin-bottom: 20px;
+.home-card h1{
+  margin-bottom:15px;
 }
 
-/* ---- Display ---- */
-.display-box {
-  margin-bottom: 18px;
-}
-#result {
-  width: 100%;
-  background: white;
-  border: none;
-  border-radius: 12px;
-  color: black;
-  font-size: 2rem;
-  font-weight: 500;
-  text-align: right;
-  padding: 16px 20px;
-  box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
-}
-#result:disabled { opacity: 1; }
-
-/* ---- Button Grid ---- */
-.btn-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+.home-card p{
+  color:#555;
+  margin-bottom:25px;
 }
 
-.btn {
-  border: none;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  height: 62px;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-.btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.18); }
-.btn:active { transform: translateY(0);    box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-
-.btn-number   { background:white; color: var(--dark); }
-.btn-operator { background:black; color: white; }
-.btn-clear    { background: black; color: white; }
-.btn-util     { background: black; color: white; }
-.btn-equals   { background: black; color: white; }
-
-/* tall equals spans 2 rows */
-.btn-tall { grid-row: span 2; height: 100%; }
-/* zero button spans 2 columns */
-.span2    { grid-column: span 2; }
-
-/* ---- Solver Card ---- */
-.solver-card {
-  background: rgba(255,255,255,0.96);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 24px;
+.home-btn{
+  display:inline-block;
+  background:#444;
+  color:white;
+  text-decoration:none;
+  padding:14px 24px;
+  border-radius:10px;
+  font-weight:bold;
 }
 
-.solver-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 4px;
-}
-.solver-desc {
-  font-size: 0.82rem;
-  color: #666;
-  margin-bottom: 16px;
+/* CALCULATOR */
+
+.calculator-container{
+  max-width:400px;
+  margin:30px auto;
+  padding:0 10px;
 }
 
-.eq-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-.eq-row label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--dark);
-  min-width: 80px;
-}
-.eq-row input[type="number"] {
-  width: 58px;
-  padding: 8px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  text-align: center;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.eq-row input[type="number"]:focus { border-color: var(--primary); }
-.eq-row span { font-size: 0.95rem; color: var(--dark); }
-
-.btn-solve {
-  width: 100%;
-  height: 48px;
-  margin-top: 8px;
-  background: burlywood;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-}
-.btn-solve:hover  { transform: translateY(-2px); }
-.btn-solve:active { transform: translateY(0); }
-
-.solver-result {
-  margin-top: 14px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  min-height: 44px;
-  display: none;
-}
-.solver-result.success {
-  display: block;
-  background: linear-gradient(135deg,#d4edda,#c3e6cb);
-  color: #155724;
-}
-.solver-result.error {
-  display: block;
-  background: linear-gradient(135deg,#f8d7da,#f5c6cb);
-  color: #721c24;
+.calc-header{
+  text-align:center;
+  margin-bottom:15px;
 }
 
-/* ---- Responsive ---- */
-@media (max-width: 420px) {
-  .btn { height: 54px; font-size: 1rem; }
-  #result { font-size: 1.6rem; }
+.top-bar{
+  display:flex;
+  justify-content:flex-start;
+  margin-bottom:50px;
+  margin-right: 200px;
 }
 
-/* ================================================
-   SIMULTANEOUS EQUATION SOLVER — DROPDOWN
-   ================================================ */
-
-.solver-toggle-wrap {
-  margin-top: 18px;
-  border-top: 2px solid #f0f0f0;
-  padding-top: 14px;
+.home-link{
+  text-decoration:none;
+  color:#222;
+  font-weight:bold;
+}
+.calculator-card{
+  background:#2f2f2f;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 12px 25px rgba(0,0,0,.25);
 }
 
-.btn-solver-toggle {
-  width: 100%;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: left;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  box-shadow: 0 4px 12px rgba(102,126,234,0.35);
-  display: flex;
-  align-items: center;
-}
-.btn-solver-toggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(102,126,234,0.45);
+.display-box{
+  margin-bottom:15px;
 }
 
-#solver-arrow {
-  display: inline-block;
-  transition: transform 0.3s ease;
-  margin-right: 4px;
-}
-#solver-arrow.open {
-  transform: rotate(180deg);
-}
-
-/* Panel — hidden by default, animates open */
-.solver-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-  padding: 0 4px;
-}
-.solver-panel.open {
-  max-height: 400px;
-  padding: 14px 4px 4px;
+#result{
+  width:100%;
+  border:none;
+  border-radius:10px;
+  background:#cfd8c2;
+  color:#111;
+  font-size:2rem;
+  text-align:right;
+  padding:18px;
+  opacity:1;
 }
 
-.solver-desc {
-  font-size: 0.8rem;
-  color: #666;
-  margin-bottom: 12px;
+.btn-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
 
-.btn-solve {
-  width: 100%;
-  height: 44px;
-  margin-top: 10px;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease;
-  box-shadow: 0 4px 12px rgba(46,204,113,0.3);
+.btn{
+  border:none;
+  border-radius:10px;
+  height:60px;
+  font-size:1.2rem;
+  cursor:pointer;
+  font-weight:bold;
 }
-.btn-solve:hover  { transform: translateY(-2px); }
-.btn-solve:active { transform: translateY(0); }
+
+.btn-number{
+  background:#ececec;
+  color:#111;
+}
+
+.btn-operator,
+.btn-clear,
+.btn-util{
+  background:#666;
+  color:white;
+}
+
+.btn-equals{
+  background:#ff9800;
+  color:white;
+}
+
+.btn:hover{
+  opacity:.92;
+}
+
+.btn-tall{
+  grid-row:span 2;
+  height:100%;
+}
+
+.span2{
+  grid-column:span 2;
+}
+
+/* SOLVER */
+
+.solver-toggle-wrap{
+  margin-top:18px;
+}
+
+.btn-solver-toggle{
+  width:100%;
+  border:none;
+  background:#555;
+  color:white;
+  padding:14px;
+  border-radius:10px;
+  cursor:pointer;
+  text-align:left;
+}
+
+.solver-panel{
+  margin-top:15px;
+}
+
+.solver-desc{
+  color:#ddd;
+  margin-bottom:12px;
+  font-size:.9rem;
+}
+
+.eq-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:6px;
+  margin-bottom:12px;
+  color:white;
+}
+
+.eq-row label{
+  width:50px;
+}
+
+.eq-row input{
+  width:60px;
+  padding:8px;
+  border:none;
+  border-radius:6px;
+  text-align:center;
+}
+
+.btn-solve{
+  width:100%;
+  background:#ff9800;
+  color:white;
+  margin-top:10px;
+}
+
+@media (max-width:420px){
+
+  .btn{
+    height:55px;
+  }
+
+  #result{
+    font-size:1.6rem;
+  }
+}
+.solver-panel{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .3s ease;
+  margin-top:0;
+}
+
+.solver-panel.open{
+  max-height:500px;
+  margin-top:15px;
+}
