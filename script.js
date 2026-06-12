@@ -99,14 +99,7 @@ function solveSimultaneous(a, b, c, d, e, f) {
 // --------------------------------------------------
 // SOLVER — toggle dropdown
 // --------------------------------------------------
-function toggleSolver() {
-  const panel = document.getElementById("solver-panel");
-  const arrow = document.getElementById("solver-arrow");
-  if (panel && arrow) {
-    panel.classList.toggle("open");
-    arrow.classList.toggle("open");
-  }
-}
+
 
 // --------------------------------------------------
 // SOLVER — UI glue (shows result on main display)
