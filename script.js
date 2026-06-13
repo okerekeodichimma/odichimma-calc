@@ -1,14 +1,9 @@
 
 "use strict";
 
-// --------------------------------------------------
-// STATE
-// --------------------------------------------------
 let currentExpression = "";
 
-// --------------------------------------------------
-// BASIC CALCULATOR — UI functions
-// --------------------------------------------------
+
 function appendToResult(value) {
   currentExpression += value.toString();
   updateDisplay();
